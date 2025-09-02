@@ -1,8 +1,27 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 
-int main(){
+using namespace std;
 
-    std::cout << "moçambique" << std::endl;
+class FlameSensor{
 
-    return 0;
+    int ReadGPIO(){
+
+    };
+
+    string Status(int Sinal){
+        if(Sinal == 1){
+            return "Há chama próxima";
+        } else {
+            return "Não há chama próxima";
+        }
+    }
+
+};
+
+
+int main() {
+
 }
+
