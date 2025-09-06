@@ -50,5 +50,6 @@ public:
 
 
 int main() {
-    
+    FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");
+    std::cout << "Status: " << Sensor.Status();  
 }
