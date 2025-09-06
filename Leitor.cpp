@@ -24,17 +24,22 @@ public:
     /**
      * @brief Método que retorna o valor indicado pelo sensor de chama
      */
-    int lerValor() {
+    bool lerSensor() {
         std::ifstream file(path);
         int valor;
         file >> valor;
-        return valor; /** @return Valor indicado pelo sensor  */
+        if(valor < 22350) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
+    
     /**
      * @brief Método que conclui se há ou não chama presente, baseado na leitura do sensor
      */
     string Status(){
-        if(lerValor() > 60000){
+        if(lerSensor() == 0){
             return "Há chama próxima";
         } else {
             return "Não há chama próxima";
