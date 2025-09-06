@@ -1,0 +1,21 @@
+var NAVTREEINDEX0 =
+{
+"annotated.html":[0,0],
+"class_flame_sensor.html":[0,0,0],
+"class_flame_sensor.html#a05566a42f207f1608091a545d44d4f5c":[0,0,0,1],
+"class_flame_sensor.html#a4536375ad243dc609b45723e86c730e9":[0,0,0,3],
+"class_flame_sensor.html#a4d9933f0f2f4f8986cd9ee5f847d6fff":[0,0,0,2],
+"class_flame_sensor.html#a9fa65ffd78f98d643c1308428f6901be":[0,0,0,0],
+"classes.html":[0,1],
+"files.html":[1,0],
+"functions.html":[0,2,0],
+"functions_func.html":[0,2,1],
+"functions_vars.html":[0,2,2],
+"globals.html":[1,1,0],
+"globals_func.html":[1,1,1],
+"index.html":[],
+"pages.html":[],
+"sensor_8cpp.html":[1,0,0],
+"sensor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[1,0,0,1],
+"sensor_8cpp_source.html":[1,0,0]
+};
