@@ -104,8 +104,8 @@ Diagrama de colaboração para FlameSensor:</div>
 Membros Públicos</h2></td></tr>
 <tr class="memitem:a9fa65ffd78f98d643c1308428f6901be" id="r_a9fa65ffd78f98d643c1308428f6901be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fa65ffd78f98d643c1308428f6901be">FlameSensor</a> (const std::string &amp;adcPath)</td></tr>
 <tr class="memdesc:a9fa65ffd78f98d643c1308428f6901be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método construtor da classe.  <br /></td></tr>
-<tr class="memitem:a05566a42f207f1608091a545d44d4f5c" id="r_a05566a42f207f1608091a545d44d4f5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05566a42f207f1608091a545d44d4f5c">lerValor</a> ()</td></tr>
-<tr class="memdesc:a05566a42f207f1608091a545d44d4f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que retorna o valor indicado pelo sensor de chama.  <br /></td></tr>
+<tr class="memitem:a49981f912e0628331485e2b97776173f" id="r_a49981f912e0628331485e2b97776173f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49981f912e0628331485e2b97776173f">lerSensor</a> ()</td></tr>
+<tr class="memdesc:a49981f912e0628331485e2b97776173f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que retorna o valor indicado pelo sensor de chama.  <br /></td></tr>
 <tr class="memitem:a4d9933f0f2f4f8986cd9ee5f847d6fff" id="r_a4d9933f0f2f4f8986cd9ee5f847d6fff"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d9933f0f2f4f8986cd9ee5f847d6fff">Status</a> ()</td></tr>
 <tr class="memdesc:a4d9933f0f2f4f8986cd9ee5f847d6fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que conclui se há ou não chama presente, baseado na leitura do sensor.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -116,7 +116,7 @@ Atributos Privados</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descrição detalhada</h2>
 <div class="textblock"><p>Cria a classe do sensor de chama. </p>
 
-<p class="definition">Definição na linha <a class="el" href="sensor_8cpp_source.html#l00010">10</a> do arquivo <a class="el" href="sensor_8cpp_source.html">sensor.cpp</a>.</p>
+<p class="definition">Definição na linha <a class="el" href="_leitor_8cpp_source.html#l00010">10</a> do arquivo <a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Construtores e Destrutores</h2>
 <a id="a9fa65ffd78f98d643c1308428f6901be" name="a9fa65ffd78f98d643c1308428f6901be"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9fa65ffd78f98d643c1308428f6901be">&#9670;&#160;</a></span>FlameSensor()</h2>
@@ -149,13 +149,13 @@ Atributos Privados</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definição na linha <a class="el" href="sensor_8cpp_source.html#l00020">20</a> do arquivo <a class="el" href="sensor_8cpp_source.html">sensor.cpp</a>.</p>
+<p class="definition">Definição na linha <a class="el" href="_leitor_8cpp_source.html#l00020">20</a> do arquivo <a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentação das funções</h2>
-<a id="a05566a42f207f1608091a545d44d4f5c" name="a05566a42f207f1608091a545d44d4f5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05566a42f207f1608091a545d44d4f5c">&#9670;&#160;</a></span>lerValor()</h2>
+<a id="a49981f912e0628331485e2b97776173f" name="a49981f912e0628331485e2b97776173f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49981f912e0628331485e2b97776173f">&#9670;&#160;</a></span>lerSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,7 +164,7 @@ Atributos Privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int FlameSensor::lerValor </td>
+          <td class="memname">bool FlameSensor::lerSensor </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -178,14 +178,13 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Método que retorna o valor indicado pelo sensor de chama. </p>
-<dl class="section return"><dt>Retorna</dt><dd>Valor indicado pelo sensor <br  />
-</dd></dl>
+<p>É estipulado um valor threshold de 22350 para o código tomar a decisão </p>
 
-<p class="definition">Definição na linha <a class="el" href="sensor_8cpp_source.html#l00027">27</a> do arquivo <a class="el" href="sensor_8cpp_source.html">sensor.cpp</a>.</p>
+<p class="definition">Definição na linha <a class="el" href="_leitor_8cpp_source.html#l00028">28</a> do arquivo <a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a>.</p>
 <div class="dynheader">
 Esse é o diagrama das funções que utilizam essa função:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_flame_sensor_a05566a42f207f1608091a545d44d4f5c_icgraph.svg" width="352" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_flame_sensor_a49981f912e0628331485e2b97776173f_icgraph.svg" width="462" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -214,12 +213,18 @@ Esse é o diagrama das funções que utilizam essa função:</div>
 </div><div class="memdoc">
 
 <p>Método que conclui se há ou não chama presente, baseado na leitura do sensor. </p>
+<dl class="section return"><dt>Retorna</dt><dd>0 se a leitura for abaixo do thershold e 1 se a leitura for acima do threshold </dd></dl>
 
-<p class="definition">Definição na linha <a class="el" href="sensor_8cpp_source.html#l00036">36</a> do arquivo <a class="el" href="sensor_8cpp_source.html">sensor.cpp</a>.</p>
+<p class="definition">Definição na linha <a class="el" href="_leitor_8cpp_source.html#l00043">43</a> do arquivo <a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções utilizadas por essa função:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff_cgraph.svg" width="352" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff_cgraph.svg" width="364" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Esse é o diagrama das funções que utilizam essa função:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff_icgraph.svg" width="252" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -245,12 +250,12 @@ Este é o diagrama das funções utilizadas por essa função:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definição na linha <a class="el" href="sensor_8cpp_source.html#l00012">12</a> do arquivo <a class="el" href="sensor_8cpp_source.html">sensor.cpp</a>.</p>
+<p class="definition">Definição na linha <a class="el" href="_leitor_8cpp_source.html#l00012">12</a> do arquivo <a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>A documentação para essa classe foi gerada a partir do seguinte arquivo:<ul>
-<li><a class="el" href="sensor_8cpp_source.html">sensor.cpp</a></li>
+<li><a class="el" href="_leitor_8cpp_source.html">Leitor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

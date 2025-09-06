@@ -1,4 +1,4 @@
 var files_dup =
 [
-    [ "sensor.cpp", "sensor_8cpp.html", "sensor_8cpp" ]
+    [ "Leitor.cpp", "_leitor_8cpp.html", "_leitor_8cpp" ]
 ];

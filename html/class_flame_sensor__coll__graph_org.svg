@@ -20,7 +20,7 @@
 <text xml:space="preserve" text-anchor="start" x="14" y="-47.5" font-family="Helvetica,sans-Serif" font-size="10.00">FlameSensor(const</text>
 <text xml:space="preserve" text-anchor="start" x="14" y="-36.25" font-family="Helvetica,sans-Serif" font-size="10.00"> std::string &amp;adcPath)</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="14" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">int lerValor()</text>
+<text xml:space="preserve" text-anchor="start" x="14" y="-21" font-family="Helvetica,sans-Serif" font-size="10.00">bool lerSensor()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text xml:space="preserve" text-anchor="start" x="14" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">string Status()</text>
 <polygon fill="#666666" stroke="#666666" points="0,-74.25 0,-74.25 113.25,-74.25 113.25,-74.25 0,-74.25"/>

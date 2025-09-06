@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Sensor de Chama", "index.html", [
+    [ "Trabalho_ProgAp", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Lista de Classes", "annotated.html", "annotated_dup" ],
       [ "Índice dos Componentes", "classes.html", null ],
@@ -46,7 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_leitor_8cpp.html"
 ];
 
 var SYNCONMSG = 'clique para desativar a sincronização do painel';

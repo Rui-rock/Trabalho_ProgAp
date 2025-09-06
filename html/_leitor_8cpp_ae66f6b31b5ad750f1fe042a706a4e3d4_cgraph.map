@@ -1,0 +1,7 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title="Lê uma vez o estado do sensor e acusa se há chama ou não." alt="" coords="5,5,55,31"/>
+<area shape="rect" id="Node000002" href="$class_flame_sensor.html#a4d9933f0f2f4f8986cd9ee5f847d6fff" title="Método que conclui se há ou não chama presente, baseado na leitura do sensor." alt="" coords="103,5,247,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,16,87,16,87,21,55,21"/>
+<area shape="rect" id="Node000003" href="$class_flame_sensor.html#a49981f912e0628331485e2b97776173f" title="Método que retorna o valor indicado pelo sensor de chama." alt="" coords="295,5,456,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="247,16,279,16,279,21,247,21"/>
+</map>

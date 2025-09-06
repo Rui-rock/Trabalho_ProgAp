@@ -23,6 +23,7 @@ public:
 
     /**
      * @brief Método que retorna o valor indicado pelo sensor de chama
+     * @details É estipulado um valor threshold de 22350 para o código tomar a decisão
      */
     bool lerSensor() {
         std::ifstream file(path);
@@ -34,6 +35,7 @@ public:
             return 1;
         }
     }
+    /** @return 0 se a leitura for abaixo do thershold e 1 se a leitura for acima do threshold */
     
     /**
      * @brief Método que conclui se há ou não chama presente, baseado na leitura do sensor
@@ -48,7 +50,7 @@ public:
     /** @return string que fala se há ou não chama */
 };
 
-
+/** @brief Lê uma vez o estado do sensor e acusa se há chama ou não */
 int main() {
     FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");
     std::cout << "Status: " << Sensor.Status();  
