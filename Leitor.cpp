@@ -1,6 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -50,8 +52,22 @@ public:
     /** @return string que fala se há ou não chama */
 };
 
-/** @brief Lê uma vez o estado do sensor e acusa se há chama ou não */
+/** @brief Declara o estado do sensor em loop, para o programa se pressionar ENTER */
 int main() {
     FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");
-    std::cout << "Status: " << Sensor.Status();  
+
+    while (true) 
+    {
+        cout << "Status: " << Sensor.Status() << endl;
+
+        // Se o usuário pressionar ENTER, o loop para
+        if (cin.rdbuf()->in_avail() > 0) {
+            char c = cin.get();
+            if (c == '\n') break;
+        }
+
+        // espera um pouco para não ficar muito rápido
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+    return 0;
 }
