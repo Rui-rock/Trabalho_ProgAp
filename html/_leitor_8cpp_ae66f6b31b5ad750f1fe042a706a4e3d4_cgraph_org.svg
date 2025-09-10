@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Lê uma vez o estado do sensor e acusa se há chama ou não.">
+<g id="a_Node000001"><a xlink:title="Declara o estado do sensor em loop, para o programa se pressionar ENTER.">
 <polygon fill="#999999" stroke="#666666" points="37,-19.25 0,-19.25 0,0 37,0 37,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="18.5" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>

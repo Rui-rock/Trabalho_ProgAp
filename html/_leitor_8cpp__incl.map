@@ -1,9 +1,13 @@
 <map id="Leitor.cpp" name="Leitor.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="91,5,169,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="178,5,255,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,34,67,72,64,67,113,29"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,34,83,75,82,70,185,29"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="94,79,166,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,31,133,63,127,63,127,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,34,158,71,154,67,200,29"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="190,79,243,105"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,29,192,67,189,71,143,34"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,31,219,63,214,63,214,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="268,79,325,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="232,30,274,67,270,71,228,34"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="349,79,410,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="245,29,339,70,337,75,243,34"/>
 </map>

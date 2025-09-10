@@ -60,13 +60,17 @@ int main() {
     {
         cout << "Status: " << Sensor.Status() << endl;
 
-        // Se o usuário pressionar ENTER, o loop para
+        /**
+        * @details Se o usuário pressionar ENTER, o loop para
+        */
         if (cin.rdbuf()->in_avail() > 0) {
             char c = cin.get();
             if (c == '\n') break;
         }
 
-        // espera um pouco para não ficar muito rápido
+        /** 
+        * @details Pausa a execução por um intervalo de 500ms para não deixar muito rápido
+        */ 
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     return 0;
