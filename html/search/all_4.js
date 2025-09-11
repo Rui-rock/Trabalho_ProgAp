@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
+  ['status_0',['Status',['../class_flame_sensor.html#a4d9933f0f2f4f8986cd9ee5f847d6fff',1,'FlameSensor']]]
 ];

@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "Sensor de Chama", "index.html", [
-    [ "Trabalho_ProgAp", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Lista de Classes", "annotated.html", "annotated_dup" ],
       [ "Índice dos Componentes", "classes.html", null ],

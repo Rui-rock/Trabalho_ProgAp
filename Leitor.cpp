@@ -52,7 +52,7 @@ public:
     /** @return string que fala se há ou não chama */
 };
 
-/** @brief Declara o estado do sensor em loop, para o programa se pressionar ENTER */
+/** @brief Declara o estado do sensor em loop */
 int main() {
 
     FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");

@@ -1,5 +1,5 @@
 <map id="FlameSensor::Status" name="FlameSensor::Status">
 <area shape="rect" id="Node000001" title="Método que conclui se há ou não chama presente, baseado na leitura do sensor." alt="" coords="103,5,247,31"/>
-<area shape="rect" id="Node000002" href="$_leitor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Declara o estado do sensor em loop, para o programa se pressionar ENTER." alt="" coords="5,5,55,31"/>
+<area shape="rect" id="Node000002" href="$_leitor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Declara o estado do sensor em loop." alt="" coords="5,5,55,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
