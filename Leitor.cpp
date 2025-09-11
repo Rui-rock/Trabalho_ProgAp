@@ -3,8 +3,6 @@
 #include <string>
 #include <thread>
 #include <chrono>
-#include <csignal>
-#include <atomic>
 
 using namespace std;
 
@@ -54,34 +52,14 @@ public:
     /** @return string que fala se há ou não chama */
 };
 
-atomic<bool> rodando(true);
-
-void handler(int signum) {
-    rodando = false;
-}
-
-
 /** @brief Declara o estado do sensor em loop, para o programa se pressionar ENTER */
 int main() {
-    signal(SIGINT, handler);
-
+    
     FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");
 
     while (true) 
     {
         cout << "Status: " << Sensor.Status() << endl;
-
-        /**
-        * @details Se o usuário pressionar ENTER, o loop para
-        */
-        if (cin.rdbuf()->in_avail() > 0) 
-        {
-            char c = cin.get();
-            if (c == '\n') 
-            {
-                raise(SIGINT);
-            }
-        }
         /** 
         * @details Pausa a execução por um intervalo de 500ms para não deixar muito rápido
         */ 
