@@ -45,8 +45,8 @@ O laço pode ser encerrado pelo usuário ao pressionar ENTER.
 ## **Como Compilar e Executar**
 ### **1. Clonar o projeto**
 ```
-git clone [URL_DO_SEU_REPOSITORIO]
-cd [NOME_DO_REPOSITORIO]
+git clone (https://github.com/Rui-rock/Trabalho_ProgAp/tree/main)
+cd Trabalho_ProgAp
 ```
 ### **2. Compilar**
 
