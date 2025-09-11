@@ -40,7 +40,7 @@ Programa Principal (main)
 
 O código principal instancia a classe FlameSensor e executa um loop contínuo de leitura.
 A cada meio segundo (500 ms) o estado é exibido no terminal.
-O laço pode ser encerrado pelo usuário ao pressionar ENTER.
+O laço pode ser encerrado pelo usuário ao digital Ctrl+C.
 
 ## **Como Compilar e Executar**
 ### **1. Clonar o projeto**
