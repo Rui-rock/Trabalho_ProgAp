@@ -83,15 +83,32 @@ Documentação Automática
 
 Ative as opções:
 ```
+INPUT = Leitor.cpp
 GENERATE_HTML   = YES
 GENERATE_LATEX  = YES
-GENERATE_RTF    = YES
+RECURSIVE = YES
 HAVE_DOT        = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_PATH = /opt/homebrew/bin  # (ou use `which dot` no terminal para achar o caminho)
+CALL_GRAPH = YES
+CALLER_GRAPH = YES
+DOT_CLEANUP            = YES
+CLASS_DIAGRAMS = YES
+UML_LOOK = YES
+DOT_UML_DETAILS = YES
+
+
 ```
-Execute:
-  doxygen
-  
-Resultados
-  html/: documentação em páginas web.
-  latex/: arquivos .tex que podem ser convertidos em PDF.
-  rtf/: documentação em Rich Text, compatível com editores de texto.
+Execute no terminal do diretório que contém o arquivo Leitor.cpp:
+```
+  doxygen Doxyfile
+
+``` 
+
+Resultados:
+
+  •html/: documentação em páginas web.
+
+  •latex/: arquivos .tex que podem ser convertidos em PDF.
+
+  •rtf/: documentação em Rich Text, compatível com editores de texto.
