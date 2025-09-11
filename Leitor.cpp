@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <thread>
-#include <chrono>
+#include <unistd.h>
 
 using namespace std;
 
@@ -54,16 +54,16 @@ public:
 
 /** @brief Declara o estado do sensor em loop, para o programa se pressionar ENTER */
 int main() {
-    
+
     FlameSensor Sensor("/sys/bus/iio/devices/iio:device0/in_voltage19_raw");
 
     while (true) 
     {
         cout << "Status: " << Sensor.Status() << endl;
         /** 
-        * @details Pausa a execução por um intervalo de 500ms para não deixar muito rápido
+        * @details Pausa a execução por um intervalo de 1s para não deixar muito rápido
         */ 
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        sleep(1);
     }
     return 0;
 }
