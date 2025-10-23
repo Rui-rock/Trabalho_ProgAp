@@ -113,6 +113,12 @@ Execute no terminal do diretório que contém o arquivo Leitor.cpp:
 ```
   doxygen Doxyfile
 ```
+  • `html/`: documentação em páginas web.
+
+  • `latex/`: arquivos .tex que podem ser convertidos em PDF.
+
+  • `rtf/`: documentação em Rich Text, compatível com editores de texto.
+  
 ## Comunicação UDP
   Após obter a leitura do sensor de chama, o sistema embarcado envia as informações para um servidor remoto via protocolo UDP (User Datagram Protocol).
   
@@ -127,7 +133,7 @@ Execute no terminal do diretório que contém o arquivo Leitor.cpp:
 ### Funcionamento do Cliente UDP
 1) O programa cria um socket UDP (SOCK_DGRAM) para envio dos pacotes.
 
-2) A cada segundo, a classe FlameSensor lê o valor do ADC e decide se há ou não chama.
+2) A cada segundo, a classe `FlameSensor` lê o valor do ADC e decide se há ou não chama.
 
 3) A mensagem correspondente é enviada ao IP do servidor via função:
 ```
@@ -138,27 +144,12 @@ sendto(sock, status.c_str(), status.size(), 0, (sockaddr*)&servAddr, sizeof(serv
 A comunicação não tem confirmação de recebimento (característica do UDP). Cada pacote contém apenas uma string ASCII. O UDP apresenta como vantagens nesse caso a baixa latência, o overhead mínimo e a maior simplicidade de implementação em relação a protocolos como TCP.
 
 ![sensor](https://github.com/user-attachments/assets/2d99b181-fc13-462c-8cff-2ecc0fec244b)
-1. O servidor recebeu um pacote UDP vindo da placa (192.168.42.2) na porta 35474, destinada à porta 5000 do PC.
-2. Bytes recebidos: 23, tamanho do pacote, que representa o número de caracteres na string.
+
+Pode-se visualizar a chegada dos pacotes pelo software *Wireshark*, na qual as linhas que seguem o protocolo UDP e são endereçadas à porta 5000 vêm de transmissão do estado do sensor.
    
 ![WhatsApp Image 2025-10-22 at 18 39 27_a01c9ab7](https://github.com/user-attachments/assets/ef1e7bd0-568b-4f5c-b143-fa16de3f0f3d)
 **Imagem do Wireshark**
 
-| Campo                    | Significado       | 
-|--------------------------|-------------|
-| Source                   | 192.168.42.2 (IP da placa STM32MP1) | 
-| Destino                  | 192.168.42.10 (IP do servidor)  | 
-| Protocolo                | UDP  | 
-| Porta                    | 5000  | 
-| Length                   | 65 (tamanho total do pacote Ethernet + IP + UDP + dados) |  | 
 
 
 
-
-Resultados:
-
-  • `html/`: documentação em páginas web.
-
-  • `latex/`: arquivos .tex que podem ser convertidos em PDF.
-
-  • `rtf/`: documentação em Rich Text, compatível com editores de texto.
