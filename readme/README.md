@@ -129,7 +129,7 @@ Execute no terminal do diretório que contém o arquivo Leitor.cpp:
 sendto(sock, status.c_str(), status.size(), 0, (sockaddr*)&servAddr, sizeof(servAddr));
 ```
 4) O servidor escuta na porta 5000 e exibe cada mensagem recebida.
-**Protoclo de mensagem**
+**Protocolo de mensagem**
 A comunicação não tem confirmação de recebimento (característica do UDP). Cada pacote contém apenas uma string ASCII. O UDP apresenta como vantagens nesse caso a baixa latência, o overhead mínimo e a maior simplicidade de implementação em relação a protocolos como TCP.
 
 ![sensor](https://github.com/user-attachments/assets/2d99b181-fc13-462c-8cff-2ecc0fec244b)
