@@ -107,7 +107,48 @@ DOT_UML_DETAILS = YES
 Execute no terminal do diretório que contém o arquivo Leitor.cpp:
 ```
   doxygen Doxyfile
-``` 
+```
+## Comunicação UDP
+  Após obter a leitura do sensor de chama, o sistema embarcado envia as informações para um servidor remoto via protocolo UDP (User Datagram Protocol).
+  
+| Parâmetro                | Valor       | 
+|--------------------------|-------------|
+| IP do servidor           | 192.168.42.10 | 
+| IP da placa STM32MP1-DK1 | 192.168.42.2  | 
+| Porta UDP                | 5000  | 
+| Intervalo de envio       | 1 segundo | 
+| Formato da mensagem      | "Há chama próxima" ou "Não há chama próxima" | 
+
+### Funcionamento do Cliente UDP
+1) O programa cria um socket UDP (SOCK_DGRAM) para envio dos pacotes.
+
+2) A cada segundo, a classe FlameSensor lê o valor do ADC e decide se há ou não chama.
+
+3) A mensagem correspondente é enviada ao IP do servidor via função:
+```
+sendto(sock, status.c_str(), status.size(), 0, (sockaddr*)&servAddr, sizeof(servAddr));
+```
+4) O servidor escuta na porta 5000 e exibe cada mensagem recebida.
+**Protoclo de mensagem**
+A comunicação não tem confirmação de recebimento (característica do UDP). Cada pacote contém apenas uma string ASCII. O UDP apresenta como vantagens nesse caso a baixa latência, o overhead mínimo e a maior simplicidade de implementação em relação a protocolos como TCP.
+
+![sensor](https://github.com/user-attachments/assets/2d99b181-fc13-462c-8cff-2ecc0fec244b)
+1. O servidor recebeu um pacote UDP vindo da placa (192.168.42.2) na porta 35474, destinada à porta 5000 do PC.
+2. Bytes recebidos: 23, tamanho do pacote, que representa o número de caracteres na string.
+   
+![WhatsApp Image 2025-10-22 at 18 39 27_a01c9ab7](https://github.com/user-attachments/assets/ef1e7bd0-568b-4f5c-b143-fa16de3f0f3d)
+**Imagem do Wireshark**
+
+| Campo                    | Significado       | 
+|--------------------------|-------------|
+| Source                   | 192.168.42.2 (IP da placa STM32MP1) | 
+| Destino                  | 192.168.42.10 (IP do servidor)  | 
+| Protocolo                | UDP  | 
+| Porta                    | 5000  | 
+| Length                   | 65 (tamanho total do pacote Ethernet + IP + UDP + dados) |  | 
+
+
+
 
 Resultados:
 
