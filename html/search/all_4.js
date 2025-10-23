@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['status_0',['Status',['../class_flame_sensor.html#a4d9933f0f2f4f8986cd9ee5f847d6fff',1,'FlameSensor']]]
+  ['main_0',['main',['../_cliente__leitor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'Cliente_leitor.cpp']]]
 ];

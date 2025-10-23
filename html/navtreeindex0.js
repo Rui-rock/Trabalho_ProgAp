@@ -1,8 +1,11 @@
 var NAVTREEINDEX0 =
 {
-"_leitor_8cpp.html":[1,0,0],
-"_leitor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[1,0,0,1],
-"_leitor_8cpp_source.html":[1,0,0],
+"_cliente__leitor_8cpp.html":[1,0,0],
+"_cliente__leitor_8cpp.html#a04a6c06cc1f9eb85a0104f087a477ba0":[1,0,0,2],
+"_cliente__leitor_8cpp.html#a4dc527981d87b80a0ec0ffa47e5ef2b1":[1,0,0,1],
+"_cliente__leitor_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[1,0,0,4],
+"_cliente__leitor_8cpp.html#aec6a76df56af2dc1e6c5cae49e29752f":[1,0,0,3],
+"_cliente__leitor_8cpp_source.html":[1,0,0],
 "annotated.html":[0,0],
 "class_flame_sensor.html":[0,0,0],
 "class_flame_sensor.html#a4536375ad243dc609b45723e86c730e9":[0,0,0,3],
@@ -15,6 +18,7 @@ var NAVTREEINDEX0 =
 "functions_func.html":[0,2,1],
 "functions_vars.html":[0,2,2],
 "globals.html":[1,1,0],
+"globals_defs.html":[1,1,2],
 "globals_func.html":[1,1,1],
 "index.html":[],
 "pages.html":[]
