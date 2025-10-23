@@ -52,6 +52,11 @@ cd Trabalho_ProgAp
 ```
 ### **2. Compilar**
 
+Baixar a toolchain:
+
+Baixe o arquivo **`arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz`** nesse [link](https://drive.google.com/file/d/1qpq3QeK5f7T061LFA0JlJz2fgMQDvyMn/view)
+. Esta toolchain permitirá a compilação cruzada para o kit de desenvolvimento DK1.
+
 Extraia a toolchain ARM:
 ```
 tar -xvf arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz
