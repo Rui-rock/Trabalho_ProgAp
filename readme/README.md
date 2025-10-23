@@ -69,7 +69,7 @@ arm-linux-gnueabihf-g++ -o flame_sensor_arm flame_sensor.cpp -std=c++17
 
 Envie o binário para a placa via scp:
 ```
-scp flame_sensor_arm root@<ip_da_placa>:/home/root
+scp -O  flame_sensor_arm root@<ip_da_placa>:/root
 ```
 No terminal da placa:
 ```
