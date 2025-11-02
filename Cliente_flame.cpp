@@ -36,6 +36,19 @@ public:
         path = adcPath;
     }
 
+    string StatusValue(){
+        std::ifstream file(path);
+        int valor;
+        file >> valor;
+        std::string S1 = "Valor: ";
+        std::string S2 = std::to_string(valor);
+        if(valor < 22350) {
+            return S1 + S2 + " - Há chama próxima";
+        } else {
+            return S1 + S2 + " - Não há chama próxima";
+        }
+    }
+
     /**
      * @brief Método que retorna o valor indicado pelo sensor de chama
      * @details É estipulado um valor threshold de 22350 para o código tomar a decisão
@@ -92,7 +105,7 @@ int main() {
      * @brief Loop de leitura do sensor e envio da leitura para o IP do servidor
      */
     while (true) {
-        string status = Sensor.Status();
+        string status = Sensor.StatusValue();
 
         ssize_t enviado = sendto(sock, status.c_str(), status.size(), 0,
                                  (sockaddr*)&servAddr, sizeof(servAddr));
