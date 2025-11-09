@@ -61,7 +61,7 @@ linha_tempo, = ax.plot([], [], color="green", lw=2, linestyle="--", label="Tempo
 
 # Definindo limites fixos do gráfico
 ax.set_xlim(0, RESET_TIME_S - 1)
-ax.set_ylim(THRESHOLD - 10000, THRESHOLD + 10000)
+ax.set_ylim(0, THRESHOLD + 10000)
 
 ax.legend()
 
