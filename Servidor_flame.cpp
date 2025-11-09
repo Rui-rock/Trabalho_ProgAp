@@ -8,51 +8,60 @@
 #include <mutex>
 #include <vector>
 
-#pragma comment(lib, "ws2_32.lib") // Necessário para linkar a biblioteca de rede
+#pragma comment(lib, "ws2_32.lib") // Link da biblioteca de rede
 
 #define SERVER_PORT 5000
 #define BUFFER_SIZE 1024
-#define LOG_INTERVAL_MS 200
 #define RESET_TIME_S 40 
 
 std::atomic<int> tempoDecorrido(0);
 std::mutex mtx;
-std::vector<std::string> mensagens;
 
-void temporizador() {
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        tempoDecorrido++;
-        if (tempoDecorrido >= RESET_TIME_S) {
-            tempoDecorrido = 0;
-            // Ao resetar, limpamos as mensagens para reescrever o arquivo
-            std::lock_guard<std::mutex> lock(mtx);
-            mensagens.clear();
-        }
+// Função para atualizar apenas a linha correspondente ao segundo atual
+void atualizarLinhaNoArquivo(int segundo, const std::string& conteudo) {
+    std::lock_guard<std::mutex> lock(mtx);
+
+    // Carrega o arquivo inteiro
+    std::ifstream in("log.txt");
+    std::vector<std::string> linhas;
+    std::string linha;
+
+    while (std::getline(in, linha)) {
+        linhas.push_back(linha);
     }
+    in.close();
+
+    // Proteção caso o arquivo esteja corrompido
+    if (linhas.size() < RESET_TIME_S + 1) {
+        linhas.clear();
+        linhas.push_back("Tempo decorrido: 0s");
+        for (int i = 0; i < RESET_TIME_S; i++)
+            linhas.push_back(std::to_string(i) + "s → -");
+    }
+
+    // Atualiza cabeçalho
+    linhas[0] = "Tempo decorrido: " + std::to_string(segundo) + "s";
+
+    // Atualiza APENAS a linha do segundo atual
+    linhas[segundo + 1] = std::to_string(segundo) + "s → " + conteudo;
+
+    // Escreve tudo de volta
+    std::ofstream out("log.txt", std::ios::out | std::ios::trunc);
+    for (auto& l : linhas)
+        out << l << "\n";
+    out.close();
 }
 
-void logEmArquivo() {
+// Thread para atualizar o tempo e linhas com traço, mesmo sem mensagens
+void atualizaTempoSozinho() {
     while (true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(LOG_INTERVAL_MS));
-
-        std::lock_guard<std::mutex> lock(mtx);
-        std::ofstream arquivo("log.txt", std::ios::out | std::ios::trunc);
-
-        if (!arquivo.is_open()) {
-            std::cerr << "Erro ao abrir log.txt\n";
-            continue;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        int segundo = ++tempoDecorrido;
+        if (segundo >= RESET_TIME_S) {
+            tempoDecorrido = 0;
+            segundo = 0;
         }
-
-        // Primeira linha: tempo decorrido atual
-        arquivo << "Tempo decorrido: " << tempoDecorrido.load() << "s\n";
-
-        // Linhas seguintes: mensagens recebidas
-        for (const auto& msg : mensagens) {
-            arquivo << tempoDecorrido.load() << "s → " << msg << "\n";
-        }
-
-        arquivo.close();
+        atualizarLinhaNoArquivo(segundo, "-");
     }
 }
 
@@ -63,13 +72,13 @@ int main() {
     int cliLen = sizeof(cliAddr);
     char buffer[BUFFER_SIZE];
 
-    // Inicializa o Winsock
+    // Inicializa WinSock
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
         std::cerr << "Erro ao inicializar WinSock.\n";
         return 1;
     }
 
-    // Cria o socket UDP
+    // Cria socket UDP
     sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (sockfd == INVALID_SOCKET) {
         std::cerr << "Erro ao criar socket UDP: " << WSAGetLastError() << "\n";
@@ -77,12 +86,12 @@ int main() {
         return 1;
     }
 
-    // Configura o endereço do servidor
+    // Configura endereço do servidor
     servAddr.sin_family = AF_INET;
     servAddr.sin_addr.s_addr = INADDR_ANY;  // Recebe de qualquer IP
     servAddr.sin_port = htons(SERVER_PORT);
 
-    // Faz o bind (associa o socket à porta)
+    // Faz o bind
     if (bind(sockfd, (SOCKADDR*)&servAddr, sizeof(servAddr)) == SOCKET_ERROR) {
         std::cerr << "Erro ao associar socket à porta: " << WSAGetLastError() << "\n";
         closesocket(sockfd);
@@ -90,14 +99,23 @@ int main() {
         return 1;
     }
 
-    std::cout << "Servidor UDP ativo na porta " << SERVER_PORT << " e aguardando mensagens...\n";
+    std::cout << "Servidor UDP ativo na porta " << SERVER_PORT << "...\n";
 
-    std::thread timerThread(temporizador);
+    // Inicializa log.txt fixo com traços
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        std::ofstream arquivo("log.txt", std::ios::out | std::ios::trunc);
+        arquivo << "Tempo decorrido: 0s\n";
+        for (int i = 0; i < RESET_TIME_S; i++)
+            arquivo << i << "s → -\n";
+        arquivo.close();
+    }
 
-    std::thread logThread(logEmArquivo);
+    // Inicia thread que atualiza o tempo mesmo sem mensagens
+    std::thread tempoThread(atualizaTempoSozinho);
 
-    // Loop para receber mensagens
-while (true) {
+    // Loop principal para receber mensagens UDP
+    while (true) {
         memset(buffer, 0, BUFFER_SIZE);
 
         int recebido = recvfrom(sockfd, buffer, BUFFER_SIZE - 1, 0,
@@ -109,26 +127,18 @@ while (true) {
 
         buffer[recebido] = '\0';
 
-        char clientIP[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET, &cliAddr.sin_addr, clientIP, sizeof(clientIP));
+        // Recebe corretamente UTF-8
+        std::string conteudo(buffer, recebido);
 
-        std::string mensagemRecebida = std::string(buffer);
+        int segundo = tempoDecorrido.load();
 
-        
-        // Armazena mensagem em vetor protegido por mutex
-        {
-            std::lock_guard<std::mutex> lock(mtx);
-            mensagens.push_back(std::string(clientIP) + ":" + std::to_string(ntohs(cliAddr.sin_port)) + " → " + mensagemRecebida);
-        }
+        // Atualiza log.txt na linha correta
+        atualizarLinhaNoArquivo(segundo, conteudo);
 
-        // Imprime no console
-        std::cout << "Tempo decorrido: " << tempoDecorrido.load() << "s | "
-                  << clientIP << ":" << ntohs(cliAddr.sin_port)
-                  << " → " << mensagemRecebida << std::endl;
+        std::cout << "Tempo decorrido: " << segundo << "s | " << conteudo << "\n";
     }
 
-    timerThread.join();
-    logThread.join();
+    tempoThread.join();
     closesocket(sockfd);
     WSACleanup();
     return 0;
