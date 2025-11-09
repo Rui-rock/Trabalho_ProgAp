@@ -95,7 +95,7 @@ O programa executado corretamente vai resultar em um loop dizendo se há ou não
 
 Ative as opções:
 ```
-INPUT = Leitor.cpp
+INPUT = Cliente_leitor.cpp
 GENERATE_HTML   = YES
 GENERATE_LATEX  = YES
 RECURSIVE = YES
