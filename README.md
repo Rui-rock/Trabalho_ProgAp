@@ -160,6 +160,9 @@ O programa da interface converte o arquivo `log.txt` em figura. Ele atualiza a c
 
 Os pontos azuis são referentes ao valor que o sensor indica. Nesse caso, abaixo da linha vermelha, indica que há chama. Acima, indica que não há. Já a linha verde indica o tempo atual cronometrado pelo servidor e se move a cada 1s. 
 
+No topo da janela, mostra-se o valor atual lido pelo sensor e opções de salvar os valores em CSV ou LOG. O fundo verde limão acima se torna vermelho quando os valores lidos ultrapassam a janela da interface.
+
 ![](interface.png)
+
 
 
