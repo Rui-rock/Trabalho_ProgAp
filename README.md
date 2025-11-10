@@ -162,7 +162,6 @@ Os pontos azuis são referentes ao valor que o sensor indica. Nesse caso, abaixo
 
 No topo da janela, mostra-se o valor atual lido pelo sensor e opções de salvar os valores em CSV ou LOG. O fundo verde limão acima se torna vermelho quando os valores lidos ultrapassam a janela da interface.
 
-![](interface.png)
 
 
 
