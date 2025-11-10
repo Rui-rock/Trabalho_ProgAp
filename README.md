@@ -84,10 +84,12 @@ Exemplo de Saída**
   Status: Não há chama próxima
   Status: Há chama próxima
 ```
-### **Exemplo de execução**
-O programa executado corretamente vai resultar em um loop dizendo se há ou não chama em tempo real.\
 
-![](/readme/terminal.png)
+### Execução
+
+Exemplo de execução. No caso, a foto abaixo é uma versão anterior. A mensagem de status também informa o valor de tensão e o IP da máquina de envio da mensagem.
+
+![sensor](terminal.png)
 
 ### **Documentação Automática**
   A documentação pode ser gerada em diferentes formatos com o **Doxygen** .
@@ -128,7 +130,7 @@ Execute no terminal do diretório que contém o arquivo Leitor.cpp:
 | IP da placa STM32MP1-DK1 | 192.168.42.2  | 
 | Porta UDP                | 5000  | 
 | Intervalo de envio       | 1 segundo | 
-| Formato da mensagem      | "Há chama próxima" ou "Não há chama próxima" | 
+| Formato da mensagem      | Valor XXXX - "Há chama próxima" ou "Não há chama próxima" | 
 
 ### Funcionamento do Cliente UDP
 1) O programa cria um socket UDP (SOCK_DGRAM) para envio dos pacotes.
@@ -143,13 +145,21 @@ sendto(sock, status.c_str(), status.size(), 0, (sockaddr*)&servAddr, sizeof(serv
 **Protocolo de mensagem**
 A comunicação não tem confirmação de recebimento (característica do UDP). Cada pacote contém apenas uma string ASCII. O UDP apresenta como vantagens nesse caso a baixa latência, o overhead mínimo e a maior simplicidade de implementação em relação a protocolos como TCP.
 
-![sensor](https://github.com/user-attachments/assets/2d99b181-fc13-462c-8cff-2ecc0fec244b)
+![sensor](terminal2.png)
 
 Pode-se visualizar a chegada dos pacotes pelo software *Wireshark*, na qual as linhas que seguem o protocolo UDP e são endereçadas à porta 5000 vêm de transmissão do estado do sensor.
    
 ![WhatsApp Image 2025-10-22 at 18 39 27_a01c9ab7](https://github.com/user-attachments/assets/ef1e7bd0-568b-4f5c-b143-fa16de3f0f3d)
 **Imagem do Wireshark**
 
+O servidor também realiza a escrita de mensagens chegadas do sensor de 40s passados até o momento da leitura em um arquivo `log.txt`. O tempo indicado como *tempo decorrido* indica o tempo cronometrado pelo servidor, e reinicia para zero ao chegar em 40s. A mensagem aparece estranha no terminal pois a conversão de caracteres ASCII não é feita da mesma forma, mas a mensagem chega correta. 
 
+## Interface
+
+O programa da interface converte o arquivo `log.txt` em figura. Ele atualiza a cada 1s e mostra um intervalo de 40s. 
+
+Os pontos azuis são referentes ao valor que o sensor indica. Nesse caso, abaixo da linha vermelha, indica que há chama. Acima, indica que não há. Já a linha verde indica o tempo atual cronometrado pelo servidor e se move a cada 1s. 
+
+![](interface.png)
 
 
