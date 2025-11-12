@@ -154,13 +154,30 @@ Pode-se visualizar a chegada dos pacotes pelo software *Wireshark*, na qual as l
 
 O servidor também realiza a escrita de mensagens chegadas do sensor de 40s passados até o momento da leitura em um arquivo `log.txt`. O tempo indicado como *tempo decorrido* indica o tempo cronometrado pelo servidor, e reinicia para zero ao chegar em 40s. A mensagem aparece estranha no terminal pois a conversão de caracteres ASCII não é feita da mesma forma, mas a mensagem chega correta. 
 
-## Interface
+## Interface Gráfica 
 
-O programa da interface converte o arquivo `log.txt` em figura. Ele atualiza a cada 1s e mostra um intervalo de 40s. 
+O programa desenvolvido cria uma **interface gráfica em Python (Tkinter)** para monitoramento em tempo real das leituras de um **sensor de chama**.
 
-Os pontos azuis são referentes ao valor que o sensor indica. Nesse caso, abaixo da linha vermelha, indica que há chama. Acima, indica que não há. Já a linha verde indica o tempo atual cronometrado pelo servidor e se move a cada 1s. 
+A interface lê continuamente o arquivo `log.txt`, atualizando as informações e o gráfico a cada segundo. O gráfico exibe um intervalo de **40 segundos** de leituras recentes.
 
-No topo da janela, mostra-se o valor atual lido pelo sensor e opções de salvar os valores em CSV ou LOG. O fundo verde limão acima se torna vermelho quando os valores lidos ultrapassam a janela da interface.
+- **Pontos azuis:** representam os valores lidos pelo sensor a cada segundo.  
+- **Linha vermelha tracejada:** corresponde ao limite de detecção (`Threshold = 22350`).  
+  - Valores **abaixo** dessa linha indicam **presença de chama**.  
+  - Valores **acima** indicam **ausência de chama**.  
+- **Linha verde vertical:** marca o **tempo atual** cronometrado pelo servidor e se desloca a cada segundo.
+
+No topo da janela, são exibidos o **valor atual do sensor** e o **estado** (“Há chama próxima” ou “Não há chama próxima”).
+
+A interface também oferece dois botões:
+
+- **Salvar CSV:** exporta os valores de leitura e tempo em formato `.csv`.  
+- **Salvar LOG:** permite salvar uma cópia do arquivo `log.txt` original.
+
+Além disso, o **fundo da janela muda de cor** conforme o valor do sensor:
+
+-  **Verde-limão:** indica leituras no intervalo do gráfico.  
+-  **Vermelho-claro:** indica que houve leitura que excedeu os limites gráficos.
+
 
 ![](interface.png?v=1)
 
