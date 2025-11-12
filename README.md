@@ -63,7 +63,7 @@ tar -xvf arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz
 ```
 Compile o programa:
 ```
-arm-linux-gnueabihf-g++ -o flame_sensor_arm flame_sensor.cpp -std=c++17
+arm-linux-gnueabihf-g++ -o flame_sensor_arm Cliente_flame.cpp -std=c++17
 ```
 ### **3. Executar na STM32MP1**
 
