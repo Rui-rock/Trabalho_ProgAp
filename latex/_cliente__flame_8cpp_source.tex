@@ -1,0 +1,100 @@
+\doxysection{Cliente\+\_\+flame.\+cpp}
+\hypertarget{_cliente__flame_8cpp_source}{}\label{_cliente__flame_8cpp_source}\mbox{\hyperlink{_cliente__flame_8cpp}{Ir para a documentação desse arquivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <cstring>}\ \ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00016}\mbox{\hyperlink{_cliente__flame_8cpp_aec6a76df56af2dc1e6c5cae49e29752f}{00016}}\ \textcolor{preprocessor}{\#define\ SENSOR\_PATH\ "{}/sys/bus/iio/devices/iio:device0/in\_voltage19\_raw"{}}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00017}\mbox{\hyperlink{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1}{00017}}\ \textcolor{preprocessor}{\#define\ IP\_servidor\ \ "{}192.168.42.10"{}}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00018}\mbox{\hyperlink{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0}{00018}}\ \textcolor{preprocessor}{\#define\ Port\_servidor\ 5000}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00020}00020\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00025}\mbox{\hyperlink{class_flame_sensor}{00025}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_flame_sensor_a9fa65ffd78f98d643c1308428f6901be}{FlameSensor}}\{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00026}00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00027}\mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{00027}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{path}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00029}00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00035}\mbox{\hyperlink{class_flame_sensor_a9fa65ffd78f98d643c1308428f6901be}{00035}}\ \ \ \ \ \mbox{\hyperlink{class_flame_sensor_a9fa65ffd78f98d643c1308428f6901be}{FlameSensor}}(\textcolor{keyword}{const}\ std::string\&\ adcPath)\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{path}}\ =\ adcPath;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00039}\mbox{\hyperlink{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757}{00039}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757}{StatusValue}}()\{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ std::ifstream\ file(\mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{path}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ valor;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ file\ >>\ valor;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ std::string\ S1\ =\ \textcolor{stringliteral}{"{}Valor:\ "{}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ std::string\ S2\ =\ std::to\_string(valor);}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(valor\ <\ 22350)\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S1\ +\ S2\ +\ \textcolor{stringliteral}{"{}\ -\/\ Há\ chama\ próxima"{}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S1\ +\ S2\ +\ \textcolor{stringliteral}{"{}\ -\/\ Não\ há\ chama\ próxima"{}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00056}\mbox{\hyperlink{class_flame_sensor_a49981f912e0628331485e2b97776173f}{00056}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_flame_sensor_a49981f912e0628331485e2b97776173f}{lerSensor}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ std::ifstream\ file(\mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{path}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ valor;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ file\ >>\ valor;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(valor\ <\ 22350)\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00067}00067\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00071}\mbox{\hyperlink{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff}{00071}}\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff}{Status}}()\{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_flame_sensor_a49981f912e0628331485e2b97776173f}{lerSensor}}()\ ==\ 0)\{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Há\ chama\ próxima"{}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Não\ há\ chama\ próxima"{}};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00079}00079\ \};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00081}\mbox{\hyperlink{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00081}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00082}00082\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00083}00083\ \ \ \ \ \mbox{\hyperlink{class_flame_sensor}{FlameSensor}}\ Sensor(\mbox{\hyperlink{_cliente__flame_8cpp_aec6a76df56af2dc1e6c5cae49e29752f}{SENSOR\_PATH}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{int}\ sock\ =\ socket(AF\_INET,\ SOCK\_DGRAM,\ 0);}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (sock\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Erro\ ao\ criar\ socket\ UDP"{}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00094}00094\ \ \ \ \ sockaddr\_in\ servAddr;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00095}00095\ \ \ \ \ memset(\&servAddr,\ 0,\ \textcolor{keyword}{sizeof}(servAddr));}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00096}00096\ \ \ \ \ servAddr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00097}00097\ \ \ \ \ servAddr.sin\_port\ =\ htons(\mbox{\hyperlink{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0}{Port\_servidor}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00098}00098\ \ \ \ \ servAddr.sin\_addr.s\_addr\ =\ inet\_addr(\mbox{\hyperlink{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1}{IP\_servidor}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00100}00100\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Cliente\ UDP\ iniciado.\ Enviando\ status\ do\ sensor\ para\ "{}}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ <<\ \mbox{\hyperlink{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1}{IP\_servidor}}\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ \mbox{\hyperlink{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0}{Port\_servidor}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ status\ =\ Sensor.\mbox{\hyperlink{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757}{StatusValue}}();}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ ssize\_t\ enviado\ =\ sendto(sock,\ status.c\_str(),\ status.size(),\ 0,}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (sockaddr*)\&servAddr,\ \textcolor{keyword}{sizeof}(servAddr));}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enviado\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Erro\ ao\ enviar\ pacote\ UDP"{}});}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Enviado:\ "{}}\ <<\ status\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ sleep(1);\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00124}00124\ \ \ \ \ close(sock);}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_cliente__flame_8cpp_source_l00126}00126\ \}}
+
+\end{DoxyCode}

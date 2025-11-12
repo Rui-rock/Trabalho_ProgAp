@@ -47,7 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_cliente__leitor_8cpp.html"
+"_cliente__flame_8cpp.html"
 ];
 
 var SYNCONMSG = 'clique para desativar a sincronização do painel';

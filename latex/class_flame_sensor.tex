@@ -7,7 +7,8 @@ Cria a classe do sensor de chama.
 
 
 
-Diagrama de colaboração para Flame\+Sensor\+:\nopagebreak
+Diagrama de colaboração para Flame\+Sensor\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,6 +20,8 @@ Diagrama de colaboração para Flame\+Sensor\+:\nopagebreak
 \item 
 \mbox{\hyperlink{class_flame_sensor_a9fa65ffd78f98d643c1308428f6901be}{Flame\+Sensor}} (const std\+::string \&adc\+Path)
 \begin{DoxyCompactList}\small\item\em Método construtor da classe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757}{Status\+Value}} ()
+\item 
 bool \mbox{\hyperlink{class_flame_sensor_a49981f912e0628331485e2b97776173f}{ler\+Sensor}} ()
 \begin{DoxyCompactList}\small\item\em Método que retorna o valor indicado pelo sensor de chama. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff}{Status}} ()
@@ -33,7 +36,7 @@ string \mbox{\hyperlink{class_flame_sensor_a4536375ad243dc609b45723e86c730e9}{pa
 \doxysubsection{Descrição detalhada}
 Cria a classe do sensor de chama. 
 
-Definição na linha \mbox{\hyperlink{_cliente__leitor_8cpp_source_l00025}{25}} do arquivo \mbox{\hyperlink{_cliente__leitor_8cpp_source}{Cliente\+\_\+leitor.\+cpp}}.
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00025}{25}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
 
 
 
@@ -57,7 +60,7 @@ Método construtor da classe.
 \end{DoxyParams}
 
 
-Definição na linha \mbox{\hyperlink{_cliente__leitor_8cpp_source_l00035}{35}} do arquivo \mbox{\hyperlink{_cliente__leitor_8cpp_source}{Cliente\+\_\+leitor.\+cpp}}.
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00035}{35}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
 
 
 
@@ -76,13 +79,14 @@ Método que retorna o valor indicado pelo sensor de chama.
 
 É estipulado um valor threshold de 22350 para o código tomar a decisão 
 
-Definição na linha \mbox{\hyperlink{_cliente__leitor_8cpp_source_l00043}{43}} do arquivo \mbox{\hyperlink{_cliente__leitor_8cpp_source}{Cliente\+\_\+leitor.\+cpp}}.
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00056}{56}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
 
-Esse é o diagrama das funções que utilizam essa função\+:\nopagebreak
+Esse é o diagrama das funções que utilizam essa função\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_flame_sensor_a49981f912e0628331485e2b97776173f_icgraph}
+\includegraphics[width=345pt]{class_flame_sensor_a49981f912e0628331485e2b97776173f_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff}\index{FlameSensor@{FlameSensor}!Status@{Status}}
@@ -100,7 +104,7 @@ Método que conclui se há ou não chama presente, baseado na leitura do sensor.
 \end{DoxyReturn}
 
 
-Definição na linha \mbox{\hyperlink{_cliente__leitor_8cpp_source_l00058}{58}} do arquivo \mbox{\hyperlink{_cliente__leitor_8cpp_source}{Cliente\+\_\+leitor.\+cpp}}.
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00071}{71}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
 
 Este é o diagrama das funções utilizadas por essa função\+:\nopagebreak
 \begin{figure}[H]
@@ -109,11 +113,22 @@ Este é o diagrama das funções utilizadas por essa função\+:\nopagebreak
 \includegraphics[width=345pt]{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff_cgraph}
 \end{center}
 \end{figure}
-Esse é o diagrama das funções que utilizam essa função\+:\nopagebreak
+\Hypertarget{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757}\index{FlameSensor@{FlameSensor}!StatusValue@{StatusValue}}
+\index{StatusValue@{StatusValue}!FlameSensor@{FlameSensor}}
+\doxysubsubsection{\texorpdfstring{StatusValue()}{StatusValue()}}
+{\footnotesize\ttfamily \label{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757} 
+string Flame\+Sensor\+::\+Status\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00039}{39}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
+
+Esse é o diagrama das funções que utilizam essa função\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=261pt]{class_flame_sensor_a4d9933f0f2f4f8986cd9ee5f847d6fff_icgraph}
+\includegraphics[width=285pt]{class_flame_sensor_afb376a66fbff672fb4022fb3ce808757_icgraph}
 \end{center}
 \end{figure}
 
@@ -129,10 +144,10 @@ string Flame\+Sensor\+::path\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definição na linha \mbox{\hyperlink{_cliente__leitor_8cpp_source_l00027}{27}} do arquivo \mbox{\hyperlink{_cliente__leitor_8cpp_source}{Cliente\+\_\+leitor.\+cpp}}.
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00027}{27}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
 
 
 
 A documentação para essa classe foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{_cliente__leitor_8cpp}{Cliente\+\_\+leitor.\+cpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_cliente__flame_8cpp}{Cliente\+\_\+flame.\+cpp}}\end{DoxyCompactItemize}

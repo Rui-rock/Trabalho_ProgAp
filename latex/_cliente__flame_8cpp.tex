@@ -1,0 +1,104 @@
+\doxysection{Referência do Arquivo Cliente\+\_\+flame.\+cpp}
+\hypertarget{_cliente__flame_8cpp}{}\label{_cliente__flame_8cpp}\index{Cliente\_flame.cpp@{Cliente\_flame.cpp}}
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+Gráfico de dependência de inclusões para Cliente\+\_\+flame.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_cliente__flame_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_flame_sensor}{Flame\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Cria a classe do sensor de chama. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Definições e Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_cliente__flame_8cpp_aec6a76df56af2dc1e6c5cae49e29752f}{SENSOR\+\_\+\+PATH}}~"{}/sys/bus/iio/devices/iio\+:device0/in\+\_\+voltage19\+\_\+raw"{}
+\item 
+\#define \mbox{\hyperlink{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1}{IP\+\_\+servidor}}~"{}192.\+168.\+42.\+10"{}
+\item 
+\#define \mbox{\hyperlink{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0}{Port\+\_\+servidor}}~5000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_cliente__flame_8cpp_doc-define-members}
+\doxysubsection{Definições e macros}
+\Hypertarget{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1}\index{Cliente\_flame.cpp@{Cliente\_flame.cpp}!IP\_servidor@{IP\_servidor}}
+\index{IP\_servidor@{IP\_servidor}!Cliente\_flame.cpp@{Cliente\_flame.cpp}}
+\doxysubsubsection{\texorpdfstring{IP\_servidor}{IP\_servidor}}
+{\footnotesize\ttfamily \label{_cliente__flame_8cpp_a4dc527981d87b80a0ec0ffa47e5ef2b1} 
+\#define IP\+\_\+servidor~"{}192.\+168.\+42.\+10"{}}
+
+
+
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00017}{17}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
+
+\Hypertarget{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0}\index{Cliente\_flame.cpp@{Cliente\_flame.cpp}!Port\_servidor@{Port\_servidor}}
+\index{Port\_servidor@{Port\_servidor}!Cliente\_flame.cpp@{Cliente\_flame.cpp}}
+\doxysubsubsection{\texorpdfstring{Port\_servidor}{Port\_servidor}}
+{\footnotesize\ttfamily \label{_cliente__flame_8cpp_a04a6c06cc1f9eb85a0104f087a477ba0} 
+\#define Port\+\_\+servidor~5000}
+
+
+
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00018}{18}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
+
+\Hypertarget{_cliente__flame_8cpp_aec6a76df56af2dc1e6c5cae49e29752f}\index{Cliente\_flame.cpp@{Cliente\_flame.cpp}!SENSOR\_PATH@{SENSOR\_PATH}}
+\index{SENSOR\_PATH@{SENSOR\_PATH}!Cliente\_flame.cpp@{Cliente\_flame.cpp}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_PATH}{SENSOR\_PATH}}
+{\footnotesize\ttfamily \label{_cliente__flame_8cpp_aec6a76df56af2dc1e6c5cae49e29752f} 
+\#define SENSOR\+\_\+\+PATH~"{}/sys/bus/iio/devices/iio\+:device0/in\+\_\+voltage19\+\_\+raw"{}}
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em Path} & do arquivo na placa que lê as tensões do sensor IP da interface Ethernet da máquina a ser usada como servidor Porta a ser usada pelo servidor \\
+\hline
+\end{DoxyParams}
+
+
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00016}{16}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{_cliente__flame_8cpp_doc-func-members}
+\doxysubsection{Funções}
+\Hypertarget{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Cliente\_flame.cpp@{Cliente\_flame.cpp}!main@{main}}
+\index{main@{main}!Cliente\_flame.cpp@{Cliente\_flame.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Cria o socket do cliente (placa STM)
+
+Loop de leitura do sensor e envio da leitura para o IP do servidor
+
+Pausa a execução do loop por um intervalo de 1s para não deixar muito rápido
+
+Definição na linha \mbox{\hyperlink{_cliente__flame_8cpp_source_l00081}{81}} do arquivo \mbox{\hyperlink{_cliente__flame_8cpp_source}{Cliente\+\_\+flame.\+cpp}}.
+
+Este é o diagrama das funções utilizadas por essa função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{_cliente__flame_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
