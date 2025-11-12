@@ -83,30 +83,34 @@ def atualizar(frame):
     dados = ler_valores_do_log()
     valores = dados
 
-    tempos = list(range(RESET_TIME_S))
+    tempos = list(range(len(valores)))
 
     # Atualiza linha do gráfico
     linha_plot.set_data(tempos, valores)
-    linha_tempo.set_data([tempo_atual, tempo_atual], [0, THRESHOLD + 10000])
+    # Linha do tempo — agora ajustada para cobrir todo o eixo Y fixo
+    linha_tempo.set_data([tempo_atual, tempo_atual], [0, 70000])
 
-    # Valor atual
-    valor_atual = valores[tempo_atual]
-    texto_valor.config(text=f"Valor Atual: {valor_atual}")
+    # Ajuste automático dos eixos
+    ax.set_xlim(0, len(valores) - 1)
+    ax.set_ylim(0, 70000)
 
-    # Estado
-    if valor_atual < THRESHOLD:
+    # Valor 1 segundo atrás (ou atual se tempo_atual = 0)
+    indice = max(0, tempo_atual - 1)
+    valor_atrasado = valores[indice]
+
+    texto_valor.config(text=f"Valor (1s atrás): {valor_atrasado}")
+
+    # Estado baseado em 1 segundo atrás
+    if valor_atrasado < THRESHOLD:
         estado = "Há chama próxima"
+        cor = "#b3ffb3"  # verde claro
     else:
         estado = "Não há chama próxima"
+        cor = "#ffb3b3"  # vermelho claro
 
     texto_estado.config(text=f"Estado: {estado}")
 
-    # Alerta visual — cor da janela e labels
-    if valor_atual > THRESHOLD:
-        cor = "#ffb3b3"  # vermelho claro
-    else:
-        cor = "#b3ffb3"  # verde claro
-
+    # Alerta visual
     root.config(bg=cor)
     texto_valor.config(bg=cor)
     texto_estado.config(bg=cor)
@@ -122,7 +126,7 @@ root.geometry("900x650")
 root.config(bg="#b3ffb3")
 
 # Valor atual
-texto_valor = tk.Label(root, text="Valor Atual: 0", font=("Arial", 18), bg="#b3ffb3")
+texto_valor = tk.Label(root, text="Valor (1s atrás): 0", font=("Arial", 18), bg="#b3ffb3")
 texto_valor.pack(pady=5)
 
 # Estado
@@ -148,10 +152,9 @@ plt.style.use("ggplot")
 ax.set_title("Leitura do Sensor de Chama (tempo real)")
 ax.set_xlabel("Segundos")
 ax.set_ylabel("Valor do ADC")
-ax.set_xlim(0, RESET_TIME_S - 1)
-ax.set_ylim(0, THRESHOLD + 10000)
 
-linha_plot, = ax.plot([], [], lw=2, marker='o', color='blue', label="Valor do Sensor")
+linha_plot, = ax.plot([], [], linestyle='', marker='o', color='blue', markersize=6,
+                      markeredgecolor='black', label="Valor do Sensor")
 ax.axhline(THRESHOLD, color="red", linestyle="--", label=f"Threshold = {THRESHOLD}")
 linha_tempo, = ax.plot([], [], color="green", lw=2, linestyle="--", label="Tempo Atual")
 ax.legend()
@@ -159,7 +162,7 @@ ax.legend()
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-ani = animation.FuncAnimation(fig, atualizar, interval=200)
+ani = animation.FuncAnimation(fig, atualizar, interval=500)
 
 # -------------------------------------------------------
 # Iniciar programa
