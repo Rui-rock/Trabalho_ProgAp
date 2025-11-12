@@ -87,35 +87,36 @@ def atualizar(frame):
 
     # Atualiza linha do gráfico
     linha_plot.set_data(tempos, valores)
-    # Linha do tempo — agora ajustada para cobrir todo o eixo Y fixo
     linha_tempo.set_data([tempo_atual, tempo_atual], [0, 70000])
 
-    # Ajuste automático dos eixos
+    # Mantém limites fixos
     ax.set_xlim(0, len(valores) - 1)
     ax.set_ylim(0, 70000)
 
-    # Valor 1 segundo atrás (ou atual se tempo_atual = 0)
-    indice = max(0, tempo_atual - 1)
-    valor_atrasado = valores[indice]
+    # Valor mais recente
+    valor_atual = valores[-1]
 
-    texto_valor.config(text=f"Valor (1s atrás): {valor_atrasado}")
-
-    # Estado baseado em 1 segundo atrás
-    if valor_atrasado < THRESHOLD:
+    # Estado baseado no threshold definido
+    if valor_atual < THRESHOLD:
         estado = "Há chama próxima"
-        cor = "#b3ffb3"  # verde claro
     else:
         estado = "Não há chama próxima"
-        cor = "#ffb3b3"  # vermelho claro
 
+    texto_valor.config(text=f"Valor atual: {valor_atual}")
     texto_estado.config(text=f"Estado: {estado}")
 
-    # Alerta visual
+    # Alerta visual apenas se valor ultrapassar a janela do gráfico
+    if valor_atual > 70000:  
+        cor = "#ffb3b3"  # vermelho claro
+    else:
+        cor = "#b3ffb3"  # verde claro
+
     root.config(bg=cor)
     texto_valor.config(bg=cor)
     texto_estado.config(bg=cor)
 
     return linha_plot, linha_tempo
+
 
 # -------------------------------------------------------
 # Interface Tkinter
@@ -126,7 +127,7 @@ root.geometry("900x650")
 root.config(bg="#b3ffb3")
 
 # Valor atual
-texto_valor = tk.Label(root, text="Valor (1s atrás): 0", font=("Arial", 18), bg="#b3ffb3")
+texto_valor = tk.Label(root, text="Valor atual: 0", font=("Arial", 18), bg="#b3ffb3")
 texto_valor.pack(pady=5)
 
 # Estado
