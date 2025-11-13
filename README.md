@@ -179,5 +179,5 @@ Além disso, o **fundo da janela muda de cor** conforme o valor do sensor:
 -  **Vermelho-claro:** indica que houve leitura que excedeu os limites gráficos.
 
 
-![](interface.png?v=1)
+![](interface.jpeg?v=1)
 
